@@ -26,6 +26,7 @@
     padding: 0 1rem;
     flex-wrap: wrap;
     position: relative;
+    z-index: 1000;
 }
 
 .nav-child:nth-child(1) {
@@ -119,6 +120,101 @@
     width: 100%;
     height: calc(100vh - 80px);
     background-color: #f5f5f5;
+    position: relative;
+}
+
+/* Hero Swiper Styles */
+.hero-swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    position: relative;
+    overflow: hidden;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.slide-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 2;
+    width: 90%;
+    max-width: 800px;
+}
+
+.slide-content h2 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.slide-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.cta-button {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    background-color: white;
+    color: #000;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.cta-button:hover {
+    background-color: #000;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Swiper Navigation Styles */
+.swiper-button-next,
+.swiper-button-prev {
+    color: white !important;
+    background: rgba(0, 0, 0, 0.3);
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 1.5rem !important;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: white;
+    opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: white;
 }
 
 .menu-container {
@@ -183,6 +279,14 @@
 
     .nav-child:nth-child(3) {
         flex: 0.25;
+    }
+
+    .slide-content h2 {
+        font-size: 2.5rem;
+    }
+
+    .slide-content p {
+        font-size: 1.1rem;
     }
 }
 
@@ -262,11 +366,37 @@
         width: 35px;
         height: 35px;
     }
+
+    .hero {
+        height: 60vh;
+    }
+
+    .slide-content {
+        padding: 1rem;
+    }
+
+    .slide-content h2 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .slide-content p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .cta-button {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
 }
 
 @media screen and (max-width: 480px) {
     .navbar {
         padding: 0.5rem;
+    }
+    .navbar h1{
+        font-size: 1.2rem;
     }
 
     .search-box {
@@ -283,10 +413,39 @@
         font-size: 0.9rem;
         padding: 0.6rem 1rem;
     }
-    .nav-child:nth-child(1) h1{
-        font-size: 1.2rem;
+
+    .hero {
+        height: 50vh;
     }
-    .hamburger{
-        font-size: 1.2rem;
+
+    .slide-content h2 {
+        font-size: 1.8rem;
+        margin-bottom: 0.3rem;
     }
+
+    .slide-content p {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .cta-button {
+        padding: 0.7rem 1.8rem;
+        font-size: 0.9rem;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 1.2rem !important;
+    }
+}
+.product-section{
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
 }
