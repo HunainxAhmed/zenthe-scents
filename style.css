@@ -270,7 +270,7 @@
     background: transparent;
     border: none;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     cursor: pointer;
     padding: 0.5rem;
     z-index: 1000;
@@ -449,7 +449,7 @@
     .nav-links {
         display: flex;
         position: fixed;
-        top: 80px;
+        top: 77px;
         left: -100%;
         height: auto;
         max-height: 300px;
@@ -545,13 +545,14 @@
     }
 
     .nav-links {
+        margin-top: -10px;
         width: 100%;
         max-height: 250px;
     }
 
     .nav-links li {
         font-size: 0.9rem;
-        padding: 0.6rem 1rem;
+        padding: 0.8rem 1rem;
     }
 
     .hero-section {

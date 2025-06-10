@@ -28,6 +28,14 @@ hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('active');
 });
 
+// Close menu when scrolling
+window.addEventListener('scroll', () => {
+    if (hamburger.classList.contains('active')) {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+    }
+});
+
 // Close menu when clicking outside
 document.addEventListener('click', (e) => {
     if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
