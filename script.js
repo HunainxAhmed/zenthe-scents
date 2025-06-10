@@ -98,6 +98,8 @@ const productScroll = document.querySelector('.product-scroll');
 let isDown = false;
 let startX;
 let scrollLeft;
+let startY;
+let isScrolling;
 
 // Prevent default drag behavior for images
 document.querySelectorAll('.product-card img').forEach(img => {
@@ -127,7 +129,7 @@ productScroll.addEventListener('mousemove', (e) => {
     if (!isDown) return;
     e.preventDefault();
     const x = e.pageX - productScroll.offsetLeft;
-    const walk = (x - startX);
+    const walk = (x - startX) * 1.5; // Increased sensitivity
     productScroll.scrollLeft = scrollLeft - walk;
 });
 
@@ -136,18 +138,40 @@ productScroll.addEventListener('touchstart', (e) => {
     isDown = true;
     startX = e.touches[0].pageX - productScroll.offsetLeft;
     scrollLeft = productScroll.scrollLeft;
+    startY = e.touches[0].pageY;
+    isScrolling = false;
 });
 
 productScroll.addEventListener('touchend', () => {
     isDown = false;
+    isScrolling = false;
 });
 
 productScroll.addEventListener('touchmove', (e) => {
     if (!isDown) return;
-    e.preventDefault();
-    const x = e.touches[0].pageX - productScroll.offsetLeft;
-    const walk = (x - startX);
-    productScroll.scrollLeft = scrollLeft - walk;
+    
+    const currentX = e.touches[0].pageX;
+    const currentY = e.touches[0].pageY;
+    const diffX = Math.abs(currentX - startX);
+    const diffY = Math.abs(currentY - startY);
+
+    // Determine if we're scrolling horizontally or vertically
+    if (!isScrolling) {
+        if (diffX > diffY) {
+            isScrolling = 'horizontal';
+        } else {
+            isScrolling = 'vertical';
+        }
+    }
+
+    // If we're scrolling horizontally, prevent default and scroll
+    if (isScrolling === 'horizontal') {
+        e.preventDefault();
+        const x = currentX - productScroll.offsetLeft;
+        const walk = (x - startX) * 1.5; // Increased sensitivity
+        productScroll.scrollLeft = scrollLeft - walk;
+    }
+    // If we're scrolling vertically, let the default behavior handle it
 });
 
 // Prevent default drag behavior
