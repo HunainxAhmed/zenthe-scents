@@ -37,7 +37,11 @@
     z-index: 1000;
     font-family: 'Neue Machina Light', 'Poppins' !important;
 }
-
+#logo{
+    font-family: 'Serena';
+    font-size: 1.5rem;
+    margin-left: -10px;
+}
 .nav-child:nth-child(1) {
     color: white;
     display: flex;
@@ -657,6 +661,10 @@
         padding: 0.7rem 2.5rem;
         font-size: 0.9rem;
     }
+
+    #logo {
+        font-size: 1.3rem;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -724,6 +732,10 @@
     .shop-all-button {
         padding: 0.6rem 2rem;
         font-size: 0.85rem;
+    }
+
+    #logo {
+        font-size: 1.1rem;
     }
 }
 
@@ -793,6 +805,7 @@
     line-height: 1.6;
     color: #666;
     margin-bottom: 2rem;
+    font-family: 'Neue Machina Light', 'Poppins';
 }
 
 .promote-link {
@@ -837,6 +850,7 @@
 
     .promote-content p {
         font-size: 0.9rem;
+        font-family: 'Neue Machina Light', 'Poppins';
     }
 
     .promote h1 {
@@ -847,6 +861,59 @@
     .promote-link {
         padding: 0.6rem 1.5rem;
         font-size: 0.9rem;
+    }
+}
+
+/* Global font settings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Serena', 'Poppins';
+}
+
+p, .button-text, .slide-content p, .price, .search-box input, .nav-links {
+    font-family: 'Neue Machina Light', 'Poppins';
+}
+
+/* Specific section updates */
+.slide-content h2 {
+    font-family: 'Serena', 'Poppins';
+}
+
+.slide-content p {
+    font-family: 'Neue Machina Light', 'Poppins';
+}
+
+.product-card h3 {
+    font-family: 'Serena', 'Poppins';
+}
+
+.product-card .price {
+    font-family: 'Neue Machina Light', 'Poppins';
+}
+
+.promote-content h2 {
+    font-family: 'Serena', 'Poppins';
+}
+
+.promote-content p {
+    font-family: 'Neue Machina Light', 'Poppins';
+}
+
+.shop-all-button {
+    font-family: 'Neue Machina Light', 'Poppins';
+}
+
+.cta-button {
+    font-family: 'Neue Machina Light', 'Poppins';
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 768px) {
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Serena', 'Poppins';
+    }
+
+    p, .button-text, .slide-content p, .price, .search-box input, .nav-links {
+        font-family: 'Neue Machina Light', 'Poppins';
     }
 }
 
