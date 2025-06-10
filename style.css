@@ -313,6 +313,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    scroll-snap-type: x proximity;
 }
 
 .product-scroll:active {
@@ -330,6 +331,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 1rem;
     transition: transform 0.3s ease;
+    scroll-snap-align: start;
 }
 
 .product-card:hover {

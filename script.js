@@ -108,6 +108,7 @@ document.querySelectorAll('.product-card img').forEach(img => {
     });
 });
 
+// Mouse events for desktop
 productScroll.addEventListener('mousedown', (e) => {
     isDown = true;
     productScroll.style.cursor = 'grabbing';
@@ -129,26 +130,19 @@ productScroll.addEventListener('mousemove', (e) => {
     if (!isDown) return;
     e.preventDefault();
     const x = e.pageX - productScroll.offsetLeft;
-    const walk = (x - startX) * 1.5; // Increased sensitivity
+    const walk = (x - startX);
     productScroll.scrollLeft = scrollLeft - walk;
 });
 
 // Touch events for mobile
 productScroll.addEventListener('touchstart', (e) => {
-    isDown = true;
-    startX = e.touches[0].pageX - productScroll.offsetLeft;
-    scrollLeft = productScroll.scrollLeft;
+    startX = e.touches[0].pageX;
     startY = e.touches[0].pageY;
     isScrolling = false;
 });
 
-productScroll.addEventListener('touchend', () => {
-    isDown = false;
-    isScrolling = false;
-});
-
 productScroll.addEventListener('touchmove', (e) => {
-    if (!isDown) return;
+    if (!startX || !startY) return;
     
     const currentX = e.touches[0].pageX;
     const currentY = e.touches[0].pageY;
@@ -164,14 +158,17 @@ productScroll.addEventListener('touchmove', (e) => {
         }
     }
 
-    // If we're scrolling horizontally, prevent default and scroll
-    if (isScrolling === 'horizontal') {
-        e.preventDefault();
-        const x = currentX - productScroll.offsetLeft;
-        const walk = (x - startX) * 1.5; // Increased sensitivity
-        productScroll.scrollLeft = scrollLeft - walk;
-    }
     // If we're scrolling vertically, let the default behavior handle it
+    if (isScrolling === 'vertical') {
+        startX = null;
+        startY = null;
+    }
+});
+
+productScroll.addEventListener('touchend', () => {
+    startX = null;
+    startY = null;
+    isScrolling = false;
 });
 
 // Prevent default drag behavior
