@@ -92,3 +92,65 @@ searchInput.addEventListener('keypress', (e) => {
         searchButton.click();
     }
 });
+
+// Product Scroll Functionality
+const productScroll = document.querySelector('.product-scroll');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+// Prevent default drag behavior for images
+document.querySelectorAll('.product-card img').forEach(img => {
+    img.addEventListener('dragstart', (e) => {
+        e.preventDefault();
+    });
+});
+
+productScroll.addEventListener('mousedown', (e) => {
+    isDown = true;
+    productScroll.style.cursor = 'grabbing';
+    startX = e.pageX - productScroll.offsetLeft;
+    scrollLeft = productScroll.scrollLeft;
+});
+
+productScroll.addEventListener('mouseleave', () => {
+    isDown = false;
+    productScroll.style.cursor = 'grab';
+});
+
+productScroll.addEventListener('mouseup', () => {
+    isDown = false;
+    productScroll.style.cursor = 'grab';
+});
+
+productScroll.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - productScroll.offsetLeft;
+    const walk = (x - startX);
+    productScroll.scrollLeft = scrollLeft - walk;
+});
+
+// Touch events for mobile
+productScroll.addEventListener('touchstart', (e) => {
+    isDown = true;
+    startX = e.touches[0].pageX - productScroll.offsetLeft;
+    scrollLeft = productScroll.scrollLeft;
+});
+
+productScroll.addEventListener('touchend', () => {
+    isDown = false;
+});
+
+productScroll.addEventListener('touchmove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.touches[0].pageX - productScroll.offsetLeft;
+    const walk = (x - startX);
+    productScroll.scrollLeft = scrollLeft - walk;
+});
+
+// Prevent default drag behavior
+productScroll.addEventListener('dragstart', (e) => {
+    e.preventDefault();
+});
