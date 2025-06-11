@@ -19,29 +19,38 @@ const heroSwiper = new Swiper('.hero-swiper', {
     }
 });
 
-// Hamburger menu functionality
+// Mobile menu functionality
 const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
+const menuContainer = document.querySelector('.menu-container');
 
 hamburger.addEventListener('click', () => {
+    menuContainer.classList.toggle('active');
     hamburger.classList.toggle('active');
-    navLinks.classList.toggle('active');
 });
 
 // Close menu when scrolling
 window.addEventListener('scroll', () => {
-    if (hamburger.classList.contains('active')) {
+    if (menuContainer.classList.contains('active')) {
+        menuContainer.classList.remove('active');
         hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
     }
 });
 
 // Close menu when clicking outside
 document.addEventListener('click', (e) => {
-    if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+    if (!menuContainer.contains(e.target) && !hamburger.contains(e.target)) {
+        menuContainer.classList.remove('active');
         hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
     }
+});
+
+// Close menu when clicking on a link
+const navLinks = document.querySelectorAll('.nav-links li');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        menuContainer.classList.remove('active');
+        hamburger.classList.remove('active');
+    });
 });
 
 // Navigation links functionality
@@ -53,7 +62,7 @@ navItems.forEach(item => {
         console.log(`Navigating to ${section} section`);
         // Close mobile menu after clicking
         hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
+        menuContainer.classList.remove('active');
     });
 });
 
