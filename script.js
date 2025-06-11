@@ -1,5 +1,7 @@
-// Initialize Swiper
+// Initialize hero swiper
 const heroSwiper = new Swiper('.hero-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 0,
     loop: true,
     autoplay: {
         delay: 5000,
@@ -8,14 +10,21 @@ const heroSwiper = new Swiper('.hero-swiper', {
     pagination: {
         el: '.swiper-pagination',
         clickable: true,
+    }
+});
+
+// Initialize retail swiper
+const retailSwiper = new Swiper('.retail-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
     },
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    effect: 'fade',
-    fadeEffect: {
-        crossFade: true
+    breakpoints: {
+        769: {
+            enabled: false,
+        }
     }
 });
 
