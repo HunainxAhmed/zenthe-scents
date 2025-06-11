@@ -201,3 +201,13 @@ productScroll.addEventListener('touchend', () => {
 productScroll.addEventListener('dragstart', (e) => {
     e.preventDefault();
 });
+
+// Loading screen functionality
+window.addEventListener('DOMContentLoaded', () => {
+    const loadingScreen = document.getElementById('loading-screen');
+    loadingScreen.classList.add('hidden');
+    // Remove no-scroll after the transition completes
+    loadingScreen.addEventListener('transitionend', () => {
+        document.body.classList.remove('no-scroll');
+    }, { once: true });
+});
