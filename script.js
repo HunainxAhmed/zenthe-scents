@@ -388,3 +388,9 @@ document.addEventListener('DOMContentLoaded', initCart);
 
 // HAMBURGER MENU
 
+document.querySelectorAll('.details').forEach(btn => {
+  btn.onclick = function() {
+    window.location.href = 'product-detail.html';
+  };
+});
+
