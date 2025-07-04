@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenthé Scents | Product Detail</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Product Detail Page Custom Styles */
+        .product-detail-section {
+            padding: 8rem 2rem 4rem;
+            background: #f5f5f5;
+        }
+        .product-detail-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+            padding: 2.5rem 2rem;
+        }
+        .product-images {
+            flex: 1 1 350px;
+            min-width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .main-image {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .thumbnail-row {
+            display: flex;
+            gap: 0.7rem;
+        }
+        .thumbnail-row img {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border 0.2s;
+        }
+        .thumbnail-row img.active,
+        .thumbnail-row img[style*='d4af37'] {
+            border: 2px solid #d4af37;
+        }
+        .product-info {
+            flex: 2 1 350px;
+            min-width: 220px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+        .product-info h2 {
+            font-size: 2.2rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        .product-info .price {
+            font-size: 1.5rem;
+            color: #d4af37;
+            font-weight: 600;
+        }
+        .product-info .stock {
+            font-size: 1rem;
+            color: #28a745;
+            font-weight: 500;
+        }
+        .product-info p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.7;
+        }
+        .product-info ul {
+            color: #666;
+            font-size: 1rem;
+            margin-left: 1.2rem;
+        }
+        .product-info .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .product-info .add-to-cart,
+        .product-info .buy-now {
+            flex: 1;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 1rem 0;
+            font-weight: 600;
+        }
+        .product-info .add-to-cart {
+            background: #333;
+            color: white;
+        }
+        .product-info .add-to-cart:hover {
+            background: #555;
+        }
+        .product-info .buy-now {
+            background: #d4af37;
+            color: #1a1a1a;
+        }
+        .product-info .buy-now:hover {
+            background: #b8941f;
+        }
+        /* Responsive for tablets */
+        @media (max-width: 768px) {
+            .product-detail-container {
+                flex-direction: column;
+                padding: 2rem 0.5rem;
+            }
+            .product-images, .product-info {
+                min-width: 0;
+            }
+            .main-image {
+                max-width: 90vw;
+            }
+        }
+        /* Responsive for small phones (Galaxy S8+, iPhone SE, etc.) */
+        @media (max-width: 400px) {
+            .product-detail-section {
+                padding: 6rem 0.2rem 2rem;
+            }
+            .product-detail-container {
+                gap: 1.2rem;
+                padding: 1.2rem 0.2rem;
+            }
+            .main-image {
+                max-width: 220px;
+                height: 180px;
+            }
+            .thumbnail-row img {
+                width: 38px;
+                height: 38px;
+            }
+            .product-info h2 {
+                font-size: 1.2rem;
+            }
+            .product-info .price {
+                font-size: 1.1rem;
+            }
+            .product-info .stock {
+                font-size: 0.9rem;
+            }
+            .product-info p, .product-info ul {
+                font-size: 0.95rem;
+            }
+            .product-info .button-group {
+                flex-direction: column;
+                gap: 0.6rem;
+            }
+            .product-info .add-to-cart,
+            .product-info .buy-now {
+                font-size: 0.95rem;
+                padding: 0.7rem 0;
+            }
+        }
+        /* Even smaller (iPhone SE) */
+        @media (max-width: 350px) {
+            .main-image {
+                max-width: 150px;
+                height: 120px;
+            }
+            .product-info h2 {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Navbar (copied from other pages) -->
+        <div class="navbar">
+            <div class="nav-child">
+                <button class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 id="logo">Zenthé</h1>
+            </div>
+            <div class="nav-child menu-container">
+                <div class="mobile-menu-header">
+                    <h2>Menu</h2>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about-us.html">About</a></li>
+                    <li><a href="contact-us.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-child">
+                <div class="search-box">
+                    <input type="text" placeholder="Search...">
+                    <button type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="profile">
+                    <img src="https://picsum.photos/35" alt="Profile">
+                    <div class="cart-basket" id="cart-basket">
+                        <i class="fas fa-shopping-basket"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Detail Section -->
+        <section class="product-detail-section">
+            <div class="product-detail-container">
+                <!-- Product Images -->
+                <div class="product-images">
+                    <img class="main-image" src="https://images.pexels.com/photos/932577/pexels-photo-932577.jpeg?auto=compress&cs=tinysrgb&w=600&h=600" alt="Lavender Dream Perfume">
+                    <div class="thumbnail-row">
+                        <img src="https://images.pexels.com/photos/932577/pexels-photo-932577.jpeg?auto=compress&cs=tinysrgb&w=600&h=600" alt="Thumb 1" style="border: 2px solid #d4af37;">
+                        <img src="https://images.pexels.com/photos/932577/pexels-photo-932577.jpeg?auto=compress&cs=tinysrgb&w=600&h=601" alt="Thumb 2">
+                        <img src="https://images.pexels.com/photos/932577/pexels-photo-932577.jpeg?auto=compress&cs=tinysrgb&w=600&h=602" alt="Thumb 3">
+                    </div>
+                </div>
+                <!-- Product Info -->
+                <div class="product-info">
+                    <h2>Lavender Dream</h2>
+                    <div style="display: flex; align-items: center; gap: 1.5rem;">
+                        <span class="price">$49.99</span>
+                        <span class="stock">In Stock</span>
+                    </div>
+                    <p>Experience tranquility with our Lavender Dream perfume. Crafted with pure lavender extracts and subtle floral notes, this scent soothes your senses and elevates your mood. Perfect for both day and night, it's a timeless addition to your fragrance collection.</p>
+                    <ul>
+                        <li>50ml Eau de Parfum</li>
+                        <li>Long-lasting, natural ingredients</li>
+                        <li>Elegant glass bottle</li>
+                        <li>Unisex fragrance</li>
+                    </ul>
+                    <div class="button-group">
+                        <button class="add-to-cart">
+                            <span class="button-text">Add to Cart</span>
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <button class="buy-now">
+                            <span class="button-text">Buy Now</span>
+                            <i class="fas fa-bolt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer (copied from other pages) -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <h2>Zenthé</h2>
+                        <p>Where Serenity Meets Scent</p>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Products</a></li>
+                        <li><a href="#">Collections</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>123 Fragrance Street<br>Karachi, Pakistan</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <p>+92 21 1234567</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <p>info@zenthe.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new collections and exclusive offers.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Zenthé. All rights reserved.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+    <script>
+    // Product image thumbnail click (simple swap)
+    document.querySelectorAll('.thumbnail-row img').forEach(thumb => {
+        thumb.addEventListener('click', function() {
+            document.querySelector('.main-image').src = this.src;
+            document.querySelectorAll('.thumbnail-row img').forEach(t => t.style.border = '2px solid transparent');
+            this.style.border = '2px solid #d4af37';
+        });
+    });
+    // Add to Cart and Buy Now button hooks
+    document.querySelector('.add-to-cart').addEventListener('click', function() {
+        alert('Added to cart! (Demo)');
+        // TODO: Integrate with cart logic
+    });
+    document.querySelector('.buy-now').addEventListener('click', function() {
+        alert('Proceeding to checkout! (Demo)');
+        // TODO: Integrate with checkout logic
+    });
+    </script>
+</body>
+</html>

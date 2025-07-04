@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Zenthé Scents</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(rgba(228,228,228,0.95), rgba(245,245,245,0.98)), url('https://images.pexels.com/photos/932577/pexels-photo-932577.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600') center/cover no-repeat;
+            padding: 9rem 2rem 6rem;
+            text-align: center;
+        }
+        .about-hero h1 {
+            font-size: 2.8rem;
+            color: #333;
+            margin-bottom: 1.7rem;
+            font-family: 'Serena', 'Poppins', sans-serif;
+        }
+        .about-hero p {
+            font-size: 1.3rem;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto 2.7rem;
+        }
+        .about-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4.5rem 2.5rem 3.5rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+            margin-top: -6rem;
+            position: relative;
+            z-index: 2;
+        }
+        .about-section h2 {
+            font-size: 2.2rem;
+            color: #d4af37;
+            margin-bottom: 1.7rem;
+        }
+        .about-section p {
+            font-size: 1.18rem;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 2.2rem;
+        }
+        .about-values {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            margin: 3.5rem 0 2.5rem;
+        }
+        .value-card {
+            flex: 1 1 240px;
+            background: #f5f5f5;
+            border-radius: 14px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+        .value-card i {
+            font-size: 2.4rem;
+            color: #d4af37;
+            margin-bottom: 1.1rem;
+        }
+        .value-card h3 {
+            font-size: 1.25rem;
+            color: #333;
+            margin-bottom: 0.7rem;
+        }
+        .value-card p {
+            font-size: 1.05rem;
+            color: #666;
+        }
+        .about-team {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            align-items: center;
+            margin-top: 4.5rem;
+            margin-bottom: 3.5rem;
+        }
+        .team-photo {
+            flex: 1 1 220px;
+            min-width: 180px;
+            max-width: 260px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .team-info {
+            flex: 2 1 320px;
+        }
+        .team-info h3 {
+            font-size: 1.4rem;
+            color: #d4af37;
+            margin-bottom: 0.8rem;
+        }
+        .team-info p {
+            font-size: 1.13rem;
+            color: #444;
+        }
+        .about-cta {
+            text-align: center;
+            margin: 5rem 0 2.5rem;
+        }
+        .about-cta .cta-button {
+            background: #d4af37;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.18rem;
+            padding: 1.2rem 3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .about-cta .cta-button:hover {
+            background: #b8941f;
+        }
+        @media (max-width: 768px) {
+            .about-section, .about-hero {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+            .about-section {
+                padding: 2.5rem 0.7rem 1.5rem;
+                margin-top: -2.5rem;
+            }
+            .about-values, .about-team {
+                flex-direction: column;
+                gap: 1.7rem;
+            }
+            .about-team {
+                margin-top: 2.5rem;
+                margin-bottom: 1.5rem;
+            }
+            .about-cta {
+                margin: 2.5rem 0 1.2rem;
+            }
+        }
+        @media (max-width: 400px) {
+            .about-hero h1 {
+                font-size: 1.5rem;
+            }
+            .about-section h2 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Navbar -->
+        <div class="navbar">
+            <div class="nav-child">
+                <button class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 id="logo">Zenthé</h1>
+            </div>
+            <div class="nav-child menu-container">
+                <div class="mobile-menu-header">
+                    <h2>Menu</h2>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about-us.html">About</a></li>
+                    <li><a href="contact-us.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-child">
+                <div class="search-box">
+                    <input type="text" placeholder="Search...">
+                    <button type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="profile">
+                    <img src="./img/default-user.jpg" alt="Profile">
+                    <div class="cart-basket" id="cart-basket">
+                        <i class="fas fa-shopping-basket"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="about-hero">
+            <h1>About Zenthé Scents</h1>
+            <p>Where Serenity Meets Scent. At Zenthé, we believe fragrance is more than a luxury—it's a journey to tranquility, memory, and self-expression. Our mission is to craft scents that inspire, comfort, and elevate every moment.</p>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <h2>Our Story</h2>
+            <p>Zenthé Scents was born from a passion for nature's purest aromas and a desire to bring serenity into everyday life. Founded in Karachi, our journey began with a single vision: to create fragrances that blend tradition, artistry, and modern luxury. Each bottle is a testament to our commitment to quality, sustainability, and the art of perfumery.</p>
+            <div class="about-values">
+                <div class="value-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Natural Ingredients</h3>
+                    <p>We use only the finest, ethically sourced ingredients to ensure every scent is pure and safe.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-flask"></i>
+                    <h3>Craftsmanship</h3>
+                    <p>Our fragrances are crafted by skilled artisans, blending tradition with innovation for a unique olfactory experience.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Passion & Care</h3>
+                    <p>Every bottle is made with love, care, and a deep respect for the art of scent-making.</p>
+                </div>
+            </div>
+            <div class="about-team">
+                <div class="team-photo">
+                    <img src="https://images.pexels.com/photos/1707828/pexels-photo-1707828.jpeg?auto=compress&cs=tinysrgb&w=400&h=400" alt="Founder Photo">
+                </div>
+                <div class="team-info">
+                    <h3>Meet Our Founder</h3>
+                    <p><strong>Sara Khan</strong>, a lifelong lover of fragrance and nature, founded Zenthé to share her passion for serenity and self-expression. Her vision guides every creation, ensuring each scent is a harmonious blend of tradition, luxury, and sustainability.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="about-cta">
+            <a style="text-decoration: none;" href="products.html" class="cta-button">Shop Our Collection</a>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <h2>Zenthé</h2>
+                        <p>Where Serenity Meets Scent</p>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Products</a></li>
+                        <li><a href="#">Collections</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>123 Fragrance Street<br>Karachi, Pakistan</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <p>+92 21 1234567</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <p>info@zenthe.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new collections and exclusive offers.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Zenthé. All rights reserved.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

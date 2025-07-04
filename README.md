@@ -35,4 +35,6 @@ The website is fully responsive and works on:
 
 Hunain Ahmed
 
-**HOSTED as https://zenthe-scents.vercel.app/**
+## License
+
+This project is open source and available under the MIT License. 
