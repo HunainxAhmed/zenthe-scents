@@ -358,6 +358,7 @@ function sendOrderConfirmationEmail(orderData) {
         const templateParams = {
             to_email: orderData.customer.email,
             to_name: orderData.customer.name,
+            reply_to: orderData.customer.email,
             order_id: orderData.orderId,
             order_date: new Date(orderData.orderDate).toLocaleDateString(),
             customer_name: orderData.customer.name,
@@ -373,6 +374,9 @@ function sendOrderConfirmationEmail(orderData) {
             company_email: 'info@zenthe.com',
             company_phone: '+92 21 1234567'
         };
+        
+        console.log('Sending email to:', orderData.customer.email);
+        console.log('Template params:', templateParams);
         
         // Send email using EmailJS
         emailjs.send(
