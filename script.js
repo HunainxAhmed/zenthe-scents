@@ -251,6 +251,23 @@ function renderCartOverlay() {
       `;
       cartItemsDiv.appendChild(div);
     });
+    
+    // Calculate and display total
+    let total = 0;
+    cart.forEach(item => {
+      const price = parseFloat(item.price.replace('$', ''));
+      const quantity = item.quantity || 1;
+      total += price * quantity;
+    });
+    
+    // Add total display to cart overlay footer
+    const cartOverlayFooter = document.querySelector('.cart-overlay-footer');
+    if (cartOverlayFooter) {
+      const totalSpan = cartOverlayFooter.querySelector('span:last-child');
+      if (totalSpan) {
+        totalSpan.textContent = `$${total.toFixed(2)}`;
+      }
+    }
   }
 }
 function openCart() {
@@ -329,6 +346,15 @@ function setupCartEvents() {
         }
       }
     };
+  }
+  
+  // Setup checkout button functionality
+  const checkoutBtn = document.querySelector('.checkout-btn');
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', function() {
+      closeCart();
+      window.location.href = 'checkout.html';
+    });
   }
 }
 function setupAddToCartButtons() {
