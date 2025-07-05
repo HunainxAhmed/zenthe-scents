@@ -1,5 +1,7 @@
 // Checkout Page JavaScript
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize EmailJS
+    emailjs.init("2xrqQl_gqD743ifBy"); // You'll need to replace this with your actual EmailJS public key
     const cart = getCart();
     const checkoutContainer = document.getElementById('checkout-container');
     const cartItemsCheckout = document.getElementById('cart-items-checkout');
@@ -270,48 +272,123 @@ function processOrder(orderData) {
     // Show loading state
     Swal.fire({
         title: 'Processing Order...',
-        text: 'Please wait while we process your order.',
+        text: 'Please wait while we process your order and send confirmation email.',
         allowOutsideClick: false,
         didOpen: () => {
             Swal.showLoading();
         }
     });
     
-    // Simulate order processing
-    setTimeout(() => {
-        // Clear cart
-        setCart([]);
-        updateCartCount();
-        
-        // Show success message
-        Swal.fire({
-            title: 'Order Placed Successfully!',
-            html: `
-                <div style="text-align: center;">
-                    <i class="fas fa-check-circle" style="font-size: 4rem; color: #28a745; margin-bottom: 1rem;"></i>
-                    <h4 style="color: #d4af37; margin-bottom: 0.5rem;">Thank you for your order!</h4>
-                    <p><strong>Order ID:</strong> ${orderData.orderId}</p>
-                    <p>We'll send you an email confirmation shortly.</p>
-                    ${orderData.payment === 'online' ? 
-                        '<p style="color: #d4af37; font-weight: 600;">You will be redirected to payment gateway.</p>' : 
-                        '<p style="color: #d4af37; font-weight: 600;">Pay when you receive your order.</p>'
-                    }
-                </div>
-            `,
-            icon: 'success',
-            confirmButtonColor: '#d4af37',
-            confirmButtonText: 'Continue Shopping'
-        }).then(() => {
-            // Redirect to home page
-            window.location.href = 'index.html';
+    // Send email confirmation
+    sendOrderConfirmationEmail(orderData)
+        .then(() => {
+            // Clear cart
+            setCart([]);
+            updateCartCount();
+            
+            // Show success message
+            Swal.fire({
+                title: 'Order Placed Successfully!',
+                html: `
+                    <div style="text-align: center;">
+                        <i class="fas fa-check-circle" style="font-size: 4rem; color: #28a745; margin-bottom: 1rem;"></i>
+                        <h4 style="color: #d4af37; margin-bottom: 0.5rem;">Thank you for your order!</h4>
+                        <p><strong>Order ID:</strong> ${orderData.orderId}</p>
+                        <p style="color: #28a745; font-weight: 600;">✓ Email confirmation sent to ${orderData.customer.email}</p>
+                        ${orderData.payment === 'online' ? 
+                            '<p style="color: #d4af37; font-weight: 600;">You will be redirected to payment gateway.</p>' : 
+                            '<p style="color: #d4af37; font-weight: 600;">Pay when you receive your order.</p>'
+                        }
+                    </div>
+                `,
+                icon: 'success',
+                confirmButtonColor: '#d4af37',
+                confirmButtonText: 'Continue Shopping'
+            }).then(() => {
+                // Redirect to home page
+                window.location.href = 'index.html';
+            });
+        })
+        .catch((error) => {
+            console.error('Email sending failed:', error);
+            // Still show success but mention email issue
+            setCart([]);
+            updateCartCount();
+            
+            Swal.fire({
+                title: 'Order Placed Successfully!',
+                html: `
+                    <div style="text-align: center;">
+                        <i class="fas fa-check-circle" style="font-size: 4rem; color: #28a745; margin-bottom: 1rem;"></i>
+                        <h4 style="color: #d4af37; margin-bottom: 0.5rem;">Thank you for your order!</h4>
+                        <p><strong>Order ID:</strong> ${orderData.orderId}</p>
+                        <p style="color: #ff9800; font-weight: 600;">⚠ Email confirmation could not be sent. Please save your order ID.</p>
+                        ${orderData.payment === 'online' ? 
+                            '<p style="color: #d4af37; font-weight: 600;">You will be redirected to payment gateway.</p>' : 
+                            '<p style="color: #d4af37; font-weight: 600;">Pay when you receive your order.</p>'
+                        }
+                    </div>
+                `,
+                icon: 'success',
+                confirmButtonColor: '#d4af37',
+                confirmButtonText: 'Continue Shopping'
+            }).then(() => {
+                window.location.href = 'index.html';
+            });
         });
-    }, 2000);
 }
 
 function generateOrderId() {
     const timestamp = Date.now().toString();
     const random = Math.random().toString(36).substr(2, 5).toUpperCase();
     return `ZTH-${timestamp.slice(-6)}-${random}`;
+}
+
+function sendOrderConfirmationEmail(orderData) {
+    return new Promise((resolve, reject) => {
+        // Create items list for email
+        const itemsList = orderData.items.map(item => {
+            const quantity = item.quantity || 1;
+            const price = parseFloat(item.price.replace('$', ''));
+            const total = price * quantity;
+            return `${item.name} x${quantity} - $${total.toFixed(2)}`;
+        }).join('\n');
+        
+        // Email template parameters
+        const templateParams = {
+            to_email: orderData.customer.email,
+            to_name: orderData.customer.name,
+            order_id: orderData.orderId,
+            order_date: new Date(orderData.orderDate).toLocaleDateString(),
+            customer_name: orderData.customer.name,
+            customer_email: orderData.customer.email,
+            customer_phone: orderData.customer.phone,
+            customer_address: `${orderData.customer.address}, ${orderData.customer.city}, ${orderData.customer.postalCode}, ${orderData.customer.country}`,
+            items_list: itemsList,
+            subtotal: `$${orderData.subtotal.toFixed(2)}`,
+            delivery_charges: `$${orderData.deliveryCharges.toFixed(2)}`,
+            total_amount: `$${orderData.total.toFixed(2)}`,
+            payment_method: orderData.payment === 'online' ? 'Online Payment' : 'Cash on Delivery',
+            company_name: 'Zenthé Scents',
+            company_email: 'info@zenthe.com',
+            company_phone: '+92 21 1234567'
+        };
+        
+        // Send email using EmailJS
+        emailjs.send(
+            'service_2vmwyyv', // EmailJS service ID
+            'template_tm37mna', // EmailJS template ID
+            templateParams
+        )
+        .then((response) => {
+            console.log('Email sent successfully:', response);
+            resolve(response);
+        })
+        .catch((error) => {
+            console.error('Email sending failed:', error);
+            reject(error);
+        });
+    });
 }
 
 function validateForm() {
